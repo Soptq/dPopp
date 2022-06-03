@@ -10,11 +10,15 @@ import { CeramicDatabase } from "../src";
 let testDID: DID;
 let ceramicDatabase: CeramicDatabase;
 
+const TEST_SEED = new Uint8Array([
+  8, 190, 125, 152, 83, 9, 111, 202, 6, 214, 218, 146, 104, 168, 166, 110, 202, 171, 42, 114, 73, 204, 214, 60, 112,
+  254, 173, 151, 170, 254, 250, 2,
+]);
+// did:key value for TEST_SEED (must match ceramicClients DID)
+const TEST_DID = "did:key:z6MkjsqucobHbwuGJkBcsYd8frcRnjsEHaUizKGyDm2ydrvA";
+// IDX stream id: k2t6wyfsu4pfy6le1af5cz8q202rwe3ip1dum9e6jnvb9avf1fsndnxxddu92k
+
 beforeAll(async () => {
-  const TEST_SEED = new Uint8Array([
-    6, 190, 125, 152, 83, 9, 111, 202, 6, 214, 218, 146, 104, 168, 166, 110, 202, 171, 42, 114, 73, 204, 214, 60, 112,
-    254, 173, 151, 170, 254, 250, 2,
-  ]);
 
   // Create and authenticate the DID
   testDID = new DID({
@@ -88,7 +92,7 @@ describe("when there is an existing passport without stamps for the given did", 
       "@context": ["https://www.w3.org/2018/credentials/v1"],
       type: ["VerifiableCredential"],
       credentialSubject: {
-        id: "did:key:z6Mkf64CtFAtmSnt2a3HrFyo1i1BzR2ftndjrHby1bqv8N5r", // did:key value for TEST_SEED (must match ceramicClients DID)
+        id: TEST_DID,
         "@context": [
           {
             hash: "https://schema.org/Text",
@@ -139,7 +143,7 @@ describe("when there is an existing passport with stamps for the given did", () 
     "@context": ["https://www.w3.org/2018/credentials/v1"],
     type: ["VerifiableCredential"],
     credentialSubject: {
-      id: "did:key:z6Mkf64CtFAtmSnt2a3HrFyo1i1BzR2ftndjrHby1bqv8N5r", // did:key value for TEST_SEED (must match ceramicClients DID)
+      id: TEST_DID,
       "@context": [
         {
           hash: "https://schema.org/Text",

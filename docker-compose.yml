@@ -1,5 +1,17 @@
 version: "3.9"
 services:
+  #   image: ceramicnetwork/js-ceramic:latest
+  #   ports:
+  #     - "7007:7007"
+  ceramic-daemon:
+    image: node:16
+    ports:
+      - "7007:7007"
+    volumes:
+      - ./database-client/integration-tests/setup-ceramic.sh:/dpopp/database-client/integration-tests/setup-ceramic.sh
+      - ./schemas:/dpopp/schemas
+    entrypoint:
+      [ "sh", "/dpopp/database-client/integration-tests/setup-ceramic.sh" ]
   ceramic-integration-test:
     image: node:16
     volumes:

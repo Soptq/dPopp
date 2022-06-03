@@ -6,8 +6,10 @@ cd dpopp
 lerna bootstrap -- --ignore-scripts # skipping pre/postinstall scripts
 yarn build:database-client
 
-export CERAMIC_CLIENT_URL="https://ceramic-clay.3boxlabs.com"
+# export CERAMIC_CLIENT_URL="https://ceramic-clay.3boxlabs.com"
+export CERAMIC_CLIENT_URL="http://ceramic-daemon:7007"
 
+echo '... waiting for Ceramic daemon ...'
 # === start up ceramic in background ===
 until $(curl --output /dev/null --silent --head --fail $CERAMIC_CLIENT_URL/api/v0/node/healthcheck); do
     printf '... waiting for Ceramic daemon ...'
