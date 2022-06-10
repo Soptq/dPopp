@@ -52,10 +52,20 @@ export default function Dashboard() {
         </div>
         <div className="w-full md:w-1/4">
           {viewerConnection.status === "connecting" && (
-            <Alert status="warning" data-testid="selfId-connection-alert">
-              <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="orange.500" size="md" />
-              <AlertTitle ml={4}> Waiting for wallet signature</AlertTitle>
-            </Alert>
+            // <Alert status="warning" data-testid="selfId-connection-alert">
+            //   <Spinner thickness="4px" speed="0.65s" emptyColor="gray.200" color="orange.500" size="md" />
+            //   <AlertTitle ml={4}> Waiting for wallet signature</AlertTitle>
+            // </Alert>
+
+            <div className="flex flex-row" data-testid="selfId-connection-alert">
+              <div className="font-libre-franklin mx-auto rounded-lg bg-blue-darkblue py-4 px-8 text-xl font-bold text-green-jade">
+                Waiting for wallet signature...
+              </div>
+              <span className="-ml-26 flex justify-center">
+                <span className="absolute inline-flex h-4 w-4 animate-ping rounded-full bg-green-jade opacity-75"></span>
+                <span className="relative inline-flex h-3 w-3 rounded-full bg-green-jade"></span>
+              </span>
+            </div>
           )}
           {viewerConnection.status !== "connecting" &&
             (!passport ? (
